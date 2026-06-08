@@ -311,10 +311,14 @@ function updateGCalButton(connected) {
 async function addToGoogleCalendar(todo) {
   if (!accessToken) return;
 
+  const endDate = new Date(todo.date + 'T00:00:00');
+  endDate.setDate(endDate.getDate() + 1);
+  const endDateStr = dateStr(endDate);
+
   const event = {
     summary: todo.text,
     start: { date: todo.date },
-    end: { date: todo.date }
+    end: { date: endDateStr }
   };
 
   try {
