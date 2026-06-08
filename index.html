@@ -14,7 +14,7 @@
       <span class="nav-title">To-Do</span>
       <div class="nav-spacer"></div>
       <button class="gcal-btn" id="gcalBtn" onclick="handleGCalAuth()">
-        <span id="gcalIcon">📅</span>
+        -<span id="gcalIcon">📅</span>
         <span id="gcalLabel">캘린더 연결</span>
       </button>
     </div>
@@ -57,7 +57,13 @@
 
       <!-- Daily View -->
       <div id="view-daily">
-        <h2 class="display-md" id="dailyTitle"></h2>
+        <!-- Date Navigation -->
+        <div class="day-nav">
+          <button class="day-nav-btn" onclick="changeDay(-1)">◄</button>
+          <h2 class="display-md" id="dailyTitle"></h2>
+          <button class="day-nav-btn" onclick="changeDay(1)">►</button>
+        </div>
+
         <ul id="dailyList" class="todo-list"></ul>
         <p class="empty-msg" id="dailyEmpty">오늘 할 일이 없어요. 위에서 추가해보세요.</p>
       </div>
