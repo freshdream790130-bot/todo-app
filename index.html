@@ -12,27 +12,66 @@
     <div class="nav-inner">
       <span class="nav-logo">🍎</span>
       <span class="nav-title">To-Do</span>
+      <div class="nav-spacer"></div>
+      <button class="gcal-btn" id="gcalBtn" onclick="handleGCalAuth()">
+        <span id="gcalIcon">📅</span>
+        <span id="gcalLabel">캘린더 연결</span>
+      </button>
     </div>
   </nav>
 
-  <!-- Hero Tile (Light) -->
+  <!-- Input Section -->
   <section class="tile tile-light">
     <div class="tile-inner">
       <h1 class="display-lg">나의 To-Do List</h1>
-      <p class="lead">오늘 할 일을 기록하고 완료해보세요.</p>
+      <p class="lead">할 일을 기록하고 완료해보세요.</p>
+
       <div class="input-area">
         <input type="text" id="todoInput" placeholder="할 일을 입력하세요..." class="search-input" />
+        <input type="date" id="todoDate" class="date-input" />
         <button class="button-primary" onclick="addTodo()">추가</button>
+      </div>
+
+      <!-- Google Calendar Client ID Setup -->
+      <div id="gcalSetup" class="gcal-setup" style="display:none">
+        <p class="setup-desc">Google Calendar 연동을 위해 OAuth Client ID를 입력하세요.<br>
+          <a href="https://console.cloud.google.com/" target="_blank" rel="noopener">Google Cloud Console</a>에서 발급 후 아래에 붙여넣으세요.
+        </p>
+        <div class="setup-row">
+          <input type="text" id="clientIdInput" placeholder="예: 123456789-xxxx.apps.googleusercontent.com" class="search-input" />
+          <button class="button-primary" onclick="saveClientId()">저장</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Todo List Tile (Dark) -->
+  <!-- View Tabs + List Section -->
   <section class="tile tile-dark">
     <div class="tile-inner">
-      <h2 class="display-md">할 일 목록</h2>
-      <ul id="todoList"></ul>
-      <p class="empty-msg" id="emptyMsg">아직 할 일이 없어요. 위에서 추가해보세요.</p>
+
+      <!-- Tabs -->
+      <div class="view-tabs">
+        <button class="tab-btn active" id="tab-daily" onclick="switchView('daily')">일간</button>
+        <button class="tab-btn" id="tab-weekly" onclick="switchView('weekly')">주간</button>
+      </div>
+
+      <!-- Daily View -->
+      <div id="view-daily">
+        <h2 class="display-md" id="dailyTitle"></h2>
+        <ul id="dailyList" class="todo-list"></ul>
+        <p class="empty-msg" id="dailyEmpty">오늘 할 일이 없어요. 위에서 추가해보세요.</p>
+      </div>
+
+      <!-- Weekly View -->
+      <div id="view-weekly" style="display:none">
+        <div class="week-nav">
+          <button class="week-nav-btn" onclick="changeWeek(-1)">&#9664;</button>
+          <span id="weekLabel" class="week-label"></span>
+          <button class="week-nav-btn" onclick="changeWeek(1)">&#9654;</button>
+        </div>
+        <div id="weeklyGrid" class="weekly-grid"></div>
+      </div>
+
     </div>
   </section>
 
@@ -41,6 +80,8 @@
     <p class="fine-print">Copyright © 2026 My To-Do App. All rights reserved.</p>
   </footer>
 
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="script.js"></script>
 </body>
 </html>
