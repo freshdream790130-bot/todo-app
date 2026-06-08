@@ -2,18 +2,45 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>📝 To-Do List</h1>
-    <div class="input-area">
-      <input type="text" id="todoInput" placeholder="할 일을 입력하세요..." />
-      <button onclick="addTodo()">추가</button>
+  <!-- Global Nav -->
+  <nav class="global-nav">
+    <div class="nav-inner">
+      <span class="nav-logo">🍎</span>
+      <span class="nav-title">To-Do</span>
     </div>
-    <ul id="todoList"></ul>
-  </div>
+  </nav>
+
+  <!-- Hero Tile (Light) -->
+  <section class="tile tile-light">
+    <div class="tile-inner">
+      <h1 class="display-lg">나의 To-Do List</h1>
+      <p class="lead">오늘 할 일을 기록하고 완료해보세요.</p>
+      <div class="input-area">
+        <input type="text" id="todoInput" placeholder="할 일을 입력하세요..." class="search-input" />
+        <button class="button-primary" onclick="addTodo()">추가</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Todo List Tile (Dark) -->
+  <section class="tile tile-dark">
+    <div class="tile-inner">
+      <h2 class="display-md">할 일 목록</h2>
+      <ul id="todoList"></ul>
+      <p class="empty-msg" id="emptyMsg">아직 할 일이 없어요. 위에서 추가해보세요.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="fine-print">Copyright © 2026 My To-Do App. All rights reserved.</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
